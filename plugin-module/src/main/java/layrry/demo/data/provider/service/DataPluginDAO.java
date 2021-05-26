@@ -2,9 +2,9 @@
 
 package layrry.demo.data.provider.service;
 
-import com.querydsl.core.types.Predicate;
 import layrry.demo.provider.api.service.PluginDAO;
-import org.springframework.data.domain.Pageable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * SQL Implementation to manage data entity.
@@ -13,13 +13,11 @@ import org.springframework.data.domain.Pageable;
 public class DataPluginDAO implements PluginDAO {
 
     /**
-     * The DataQueryDslJpaRepository.
+     * The logging parameter.
      */
-    DataQueryDslJpaRepository repository;
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataPluginDAO.class);
 
-    /**
-     * SQL data source connector type.
-     */
+
     public static final String DS_CONNECTOR_TYPE = "H2";
 
 
@@ -29,15 +27,8 @@ public class DataPluginDAO implements PluginDAO {
     }
 
     @Override
-    public long counts(String configuration, Predicate predicate, Pageable page) {
-        initDataRepository(configuration);
-        long count = repository.count(predicate);
-        return count;
-    }
-
-    private void initDataRepository(String configuration) {
-            repository = new DataQueryDslJpaRepository(configuration);
-
+    public void displayLogs(String logs) {
+        LOGGER.info("Logs displayed by the plugin module " + logs);
     }
 
 

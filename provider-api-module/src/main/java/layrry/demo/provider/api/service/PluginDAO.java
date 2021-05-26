@@ -2,10 +2,6 @@
 package layrry.demo.provider.api.service;
 
 
-import com.querydsl.core.types.Predicate;
-import org.springframework.data.domain.Pageable;
-
-
 /**
  * Plugin data operations DAO.
  */
@@ -13,13 +9,10 @@ public interface PluginDAO extends ApiDAO {
 
 
     /**
-     * Returns a number of  data entities according to a predicate.
+     * Display logs
      *
-     * @param configuration : the data source configuration
-     * @param page          : pagination information. Uses default Spring serialization (page=, size=, sort=...)
-     * @param predicate     : predicate to filter labels
-     * @return List of label found.
+     * @param logs : the logs to dispaly source configuration
      */
-    long counts(String configuration, Predicate predicate, Pageable page);
+    void displayLogs(String logs);
 
 }

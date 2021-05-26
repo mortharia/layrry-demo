@@ -1,13 +1,11 @@
 
 package layrry.demo.rest.api.service;
 
-import com.querydsl.core.types.Predicate;
 import layrry.demo.provider.api.service.PluginDAO;
-import layrry.demo.rest.api.error.PluginException;
-import org.springframework.data.domain.Pageable;
+import layrry.demo.rest.api.DemoApplication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import javax.validation.constraints.NotNull;
 
 
 /**
@@ -17,9 +15,14 @@ import javax.validation.constraints.NotNull;
 public class DataServiceImpl extends AbstractDataService implements DataService {
 
     /**
+     * The logging parameter.
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataServiceImpl.class);
+
+    /**
      * Constructor.
      *
-     * @param apiDAOFactoryLoader ApiPluginServiceLoader instance.
+     * @param apiDAOFactoryLoader The API DAO Factory Loader.
      */
     public DataServiceImpl(ApiPluginServiceLoader apiDAOFactoryLoader) {
         super(apiDAOFactoryLoader);
@@ -27,16 +30,13 @@ public class DataServiceImpl extends AbstractDataService implements DataService 
 
 
     @Override
-    public Long getDataCounts(@NotNull String dsConfiguration, Predicate predicate, Pageable page) {
+    public void displayLog(String logs) {
 
-        PluginDAO dao = (PluginDAO) getServiceDaoFactory(dsConfiguration).getApiDAO();
-        Long count;
-        try {
-            count = dao.counts(dsConfiguration, predicate, page);
-        } catch (Exception ex) {
-            throw new PluginException(ex);
-        }
-        return count;
+        LOGGER.info("Logs displayed by the rest module " + logs +"modules "+ DemoApplication.class.getModule().getLayer().modules());
+
+        PluginDAO dao = (PluginDAO) getServiceDaoFactory("H2").getApiDAO();
+        dao.displayLogs(logs);
+
     }
 
 

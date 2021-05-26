@@ -11,6 +11,7 @@ import layrry.demo.provider.api.service.PluginDAOFactory;
 public class DataPluginDAOFactory implements PluginDAOFactory {
     @Override
     public ApiDAO getApiDAO() {
+
         return new DataPluginDAO();
     }
 
