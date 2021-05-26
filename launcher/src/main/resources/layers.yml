@@ -1,5 +1,6 @@
 resolve:
   workOffline: true
+  remote: false
   localRepositories:
     repoName:
       layout: "flat"
