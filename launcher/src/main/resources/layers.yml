@@ -1,3 +1,9 @@
+resolve:
+  workOffline: true
+  localRepositories:
+    repoName:
+      layout: "flat"
+      path: "layrry-demo/lib/applayer"
 layers:
   app:
     modules:
